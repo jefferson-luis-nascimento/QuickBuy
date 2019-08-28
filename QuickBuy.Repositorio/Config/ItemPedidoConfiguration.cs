@@ -18,6 +18,8 @@ namespace QuickBuy.Repositorio.Config
 
             builder.Property(i => i.Quantidade)
                 .IsRequired();
+
+            builder.HasOne(i => i.Produto);
         }
     }
 }
