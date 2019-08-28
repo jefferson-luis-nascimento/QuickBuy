@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using QuickBuy.Repositorio.Contexto;
 
 namespace QuickBuy.Web
 {
@@ -12,7 +14,10 @@ namespace QuickBuy.Web
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("config.json", optional: false, reloadOnChange: true);
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -27,6 +32,12 @@ namespace QuickBuy.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            var connectionString = Configuration.GetConnectionString("MySqlConnection");
+
+            services.AddDbContext<QuickBuyContexto>(options => 
+                    options.UseLazyLoadingProxies()
+                            .UseMySql(connectionString, m => m.MigrationsAssembly("QuickBuy.Repositorio")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

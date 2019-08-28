@@ -11,7 +11,7 @@ namespace QuickBuy.Dominio.Entidades
         public string Senha { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
-        public ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
+        public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
 
         public override void Validate()
         {
