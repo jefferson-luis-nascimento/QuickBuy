@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using QuickBuy.Dominio.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QuickBuy.Repositorio.Config
 {
@@ -22,6 +19,7 @@ namespace QuickBuy.Repositorio.Config
                 .HasMaxLength(400);
 
             builder.Property(p => p.Preco)
+                .HasColumnType("decimal(10, 2)")
                 .IsRequired();
         }
     }

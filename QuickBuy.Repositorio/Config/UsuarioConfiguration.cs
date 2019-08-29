@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using QuickBuy.Dominio.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QuickBuy.Repositorio.Config
 {
@@ -24,7 +21,7 @@ namespace QuickBuy.Repositorio.Config
             builder.Property(u => u.Nome)
                 .IsRequired()
                 .HasMaxLength(50);
-            
+
             builder.Property(u => u.Sobrenome)
                 .IsRequired()
                 .HasMaxLength(50);

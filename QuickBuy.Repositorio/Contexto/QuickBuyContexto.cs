@@ -1,11 +1,7 @@
-﻿using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using QuickBuy.Dominio.Entidades;
 using QuickBuy.Dominio.ObjetoDeValor;
 using QuickBuy.Repositorio.Config;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QuickBuy.Repositorio.Contexto
 {
@@ -17,7 +13,7 @@ namespace QuickBuy.Repositorio.Contexto
         public DbSet<ItemPedido> ItensPedidos { get; set; }
         public DbSet<FormaPagamento> FormasPagamentos { get; set; }
 
-        public QuickBuyContexto(DbContextOptions options) 
+        public QuickBuyContexto(DbContextOptions options)
             : base(options)
         {
 

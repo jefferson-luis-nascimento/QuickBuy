@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using QuickBuy.Dominio.Contratos;
 using QuickBuy.Repositorio.Contexto;
+using QuickBuy.Repositorio.Repositorios;
 
 namespace QuickBuy.Web
 {
@@ -38,6 +40,10 @@ namespace QuickBuy.Web
             services.AddDbContext<QuickBuyContexto>(options => 
                     options.UseLazyLoadingProxies()
                             .UseMySql(connectionString, m => m.MigrationsAssembly("QuickBuy.Repositorio")));
+
+            services.AddScoped<IProdutoRepository, ProdutoRepositorio>();
+            services.AddScoped<IPedidoRepository, PedidoRepositorio>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepositorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
