@@ -1,5 +1,6 @@
 ﻿using QuickBuy.Dominio.Contratos;
 using QuickBuy.Repositorio.Contexto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,6 +35,11 @@ namespace QuickBuy.Repositorio.Repositorios
         public TEntity ObterPorId(int id)
         {
             return QuickBuyContexto.Set<TEntity>().Find(id);
+        }
+
+        public TEntity Obter(Func<TEntity, bool> predicate)
+        {
+            return QuickBuyContexto.Set<TEntity>().Where<TEntity>(predicate).FirstOrDefault();
         }
 
         public IEnumerable<TEntity> ObterTodos()
