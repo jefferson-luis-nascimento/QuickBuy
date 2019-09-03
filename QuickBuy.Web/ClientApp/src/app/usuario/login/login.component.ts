@@ -1,23 +1,30 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Usuario } from "../../modelo/Usuario";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+   
   public usuario;
-  public usuarioAutenticado: boolean;
-  public usuarios = ["Usuario 1", "Usuario 2", "Usuario 3", "Usuario 4", "Usuario 5", "Usuario 6"];
+  public returnUrl: string;
 
-  constructor() {
+  constructor(private router: Router, private activatedRouter: ActivatedRoute) {
+
+  }
+
+  ngOnInit(): void {
     this.usuario = new Usuario();
+    this.returnUrl = this.activatedRouter.snapshot.queryParams.returnUrl;
   }
 
   public entrar(): void {
     if (this.usuario.email == "teste@teste.com" && this.usuario.senha == "123") {
-      this.usuarioAutenticado = true;
+      sessionStorage.setItem("usuario-autenticado", "1");
+      this.router.navigate([this.returnUrl]);
     }
   }
 }
