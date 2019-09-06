@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   public entrar(): void {
     this.ativarSpinner = true;
-    this.usuarioServico.VerificarUsuario(this.usuario)
+    this.usuarioServico.verificarUsuario(this.usuario)
       .subscribe(
         usuario_json => {
           this.usuarioServico.usuario = usuario_json;          
