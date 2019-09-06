@@ -76,7 +76,7 @@
       </div>
     </div>
 
-    <button class="btn btn-primary form-control" type="submit" (click)="cadastrar()" [disabled]="ativarSpinner">
+    <button class="btn btn-primary form-control mb-2" type="submit" (click)="cadastrar()" [disabled]="ativarSpinner">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativarSpinner"></span>
       Cadastrar
     </button>
@@ -84,6 +84,10 @@
 
     <div class="alert alert-danger" *ngIf="mensagem">
       {{mensagem}}
+    </div>
+
+    <div class="alert alert-success" *ngIf="usuario_cadastrado">
+      Usuário cadastrado com sucesso! <a [routerLink]='["/entrar"]' >Clique aqui</a> para entrar no sistema com sua conta.
     </div>
 
     <img src="../../../assets/img/quick-b-logo.jpg" />

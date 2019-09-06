@@ -26,45 +26,29 @@ export class UsuarioServico {
     sessionStorage.setItem("usuario-autenticado", JSON.stringify(this._usuario));
   }
 
+  get headers(): HttpHeaders {
+    return new HttpHeaders().set('content-type', 'application/json');
+  }
+
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
   }
 
   public verificarUsuario(usuario: Usuario): Observable<Usuario> {
-    const headers = this.obterHeaders();
-    var body = {
-      email: usuario.email,
-      senha: usuario.senha
-    }
-
-    return this.http.post<Usuario>(this.baseUrl + "api/usuario/VerificarUsuario", body, { headers });
+    return this.http.post<Usuario>(this.baseUrl + "api/usuario/VerificarUsuario", JSON.stringify(usuario), { headers: this.headers });
   }
 
   public cadastrarUsuario(usuario: Usuario): Observable<Usuario> {
-    const headers = this.obterHeaders();
-
-    var body = {
-      email: usuario.email,
-      senha: usuario.senha,
-      nome: usuario.nome,
-      sobrenome: usuario.sobrenome
-    }
-
-    return this.http.post<Usuario>(this.baseUrl + "api/usuario/", body, { headers });
+    return this.http.post<Usuario>(this.baseUrl + "api/usuario/", JSON.stringify(usuario), { headers: this.headers });
   }
 
   public usuario_autenticado(): boolean {
-    //alert(this._usuario)
     return this._usuario != null && this._usuario.email != "" && this._usuario.senha != "";
   }
 
   public limpar_sessao(): void {
     sessionStorage.setItem("usuario-autenticado", "");
     this._usuario = null;
-  }
-
-  private obterHeaders(): HttpHeaders {
-    return new HttpHeaders().set('content-type', 'application/json');
   }
 }
 

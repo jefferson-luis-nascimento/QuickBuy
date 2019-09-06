@@ -17,8 +17,15 @@
           <li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="!usuarioLogado()">
             <a class="nav-link text-dark" [routerLink]='["/entrar"]'>Entrar</a>
           </li>
-          <li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="usuarioLogado()">
+          <!--<li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="usuarioLogado()">
             <a class="nav-link text-dark" [routerLink]='[""]' (click)="sair()">Sair</a>
+          </li>-->
+          <li class="nav-item dropdown" *ngIf="usuarioLogado()">
+            <a class="nav-link dropdown-toggle text-dark" role="button" href="#"
+               aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">{{usuario.email}}</a>
+            <ul class="dropdown-menu" aria-labelledby="linkMenu">
+              <li class="dropdown-item" role="menu" [routerLink]='[""]' (click)="sair()">Sair</li>
+            </ul>
           </li>
         </ul>
       </div>
