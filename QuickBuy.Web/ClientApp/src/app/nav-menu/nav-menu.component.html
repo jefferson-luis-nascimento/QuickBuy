@@ -22,7 +22,7 @@
           </li>-->
           <li class="nav-item dropdown" *ngIf="usuarioLogado()">
             <a class="nav-link dropdown-toggle text-dark" role="button" href="#"
-               aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">{{usuario.email}}</a>
+               aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">Olá, {{usuario.nome}} {{usuario.sobrenome}}</a>
             <ul class="dropdown-menu" aria-labelledby="linkMenu">
               <li class="dropdown-item" role="menu" [routerLink]='[""]' (click)="sair()">Sair</li>
             </ul>

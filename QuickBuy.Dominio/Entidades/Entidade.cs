@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace QuickBuy.Dominio.Entidades
@@ -12,7 +13,7 @@ namespace QuickBuy.Dominio.Entidades
             get { return _mensagensValidacao ?? (_mensagensValidacao = new List<string>()); }
         }
 
-        protected bool EhValido
+        public bool EhValido
         {
             get { return !MensagensValidacao.Any(); }
         }
@@ -31,5 +32,12 @@ namespace QuickBuy.Dominio.Entidades
         {
             MensagensValidacao.Clear();
         }
+
+        public string ObterMensagem()
+        {
+            return string.Join(Environment.NewLine, MensagensValidacao);
+        }
+
+        
     }
 }

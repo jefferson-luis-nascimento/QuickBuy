@@ -6,6 +6,7 @@
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public decimal Preco { get; set; }
+        public string NomeArquivo { get; set; }
 
         public override void Validate()
         {
@@ -17,6 +18,8 @@
             if (string.IsNullOrWhiteSpace(Descricao))
                 AdicionarCritica("Critica - Descrição do produto deve ser informado.");
 
+            if(Preco == 0)
+                AdicionarCritica("Critica - Preço do produto deve ser informado e maior do que 0.");
         }
     }
 }
